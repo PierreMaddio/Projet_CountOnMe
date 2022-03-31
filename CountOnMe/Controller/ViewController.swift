@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         calculator.multiplication()
         attributeText()
         guard !calculator.canAddOperator else {
-            alerte(title: "Erreur!",message: "Un operateur est déja mis !")
+            alert(message: "Un operateur est déja mis !")
             return
         }
     }
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         calculator.division()
         attributeText()
         guard !calculator.canAddOperator else {
-            alerte(title: "Erreur!",message: "Un operateur est déja mis !")
+            alert(message: "Un operateur est déja mis !")
             return
         }
     }
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         calculator.addition()
         attributeText()
         guard !calculator.canAddOperator else {
-            alerte(title: "Erreur!",message: "Un operateur est déja mis !")
+            alert(message: "Un operateur est déja mis !")
             return
         }
     }
@@ -62,19 +62,19 @@ class ViewController: UIViewController {
         calculator.substraction()
         attributeText()
         guard !calculator.canAddOperator else {
-            alerte(title: "Erreur!",message: "Un operateur est déja mis !")
+            alert(message: "Un operateur est déja mis !")
             return
         }
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
-            alerte(title: "Erreur!",message: "Entrez une expression correcte !")
+            alert(message: "Entrez une expression correcte !")
             return
         }
         
         guard calculator.expressionHaveEnoughElement else {
-            alerte(title: "Erreur!",message: "Démarrez un nouveau calcul !")
+            alert(message: "Démarrez un nouveau calcul !")
             return
         }
         
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         
         // Check if division by zero is in the expression
         guard !calculator.expressionHasNoZeroDivision else {
-            alerte(title: "Erreur!", message: "La division par zero est impossible !")
+            alert(message: "La division par zero est impossible !")
             attributeText()
             return
         }
@@ -101,8 +101,8 @@ class ViewController: UIViewController {
         textView.text = calculator.calculationText
     }
     
-    private func alerte(title: String, message: String) {
-        let alertVC: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    private func alert(message: String) {
+        let alertVC: UIAlertController = UIAlertController(title: "Erreur!", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
