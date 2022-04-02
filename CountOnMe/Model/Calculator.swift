@@ -14,7 +14,7 @@ class Calculator {
     var calculationText: String = ""
     
     // Property to round the result if not a decimal number
-    var resultString:String!
+    var resultString: String = ""
     
     // Array of selected elements
     var elements: [String] {
@@ -22,7 +22,7 @@ class Calculator {
     }
     
     // Property used to calculate the result
-    var operationsToReduce: [String]!
+    var operationsToReduce = [String]()
     
     // Error check computed variables
     var expressionIsCorrect: Bool {
@@ -111,7 +111,6 @@ class Calculator {
         }
     }
     
-    // Addition and substraction
     private func calculatorResult() {
         if operationsToReduce.count >= 3 {
             let left = Double(operationsToReduce[0])!

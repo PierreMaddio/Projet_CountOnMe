@@ -93,6 +93,7 @@ class ViewController: UIViewController {
     @IBAction func tappedACButton(_ sender: UIButton) {
         textView.text.removeAll()
         calculator.calculationText.removeAll()
+        textView.text = "0"
     }
     
     // MARK: - Methods
