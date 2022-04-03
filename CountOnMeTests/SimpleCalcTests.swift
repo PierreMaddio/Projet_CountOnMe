@@ -101,4 +101,40 @@ class SimpleCalcTests: XCTestCase {
         
         XCTAssertFalse(calculator.resultString == "6")
     }
+    
+    // Expression is correct when having a number in numberText
+    func testIfExpressionIsCorrect() {
+        calculator.tappedNumber(numberText: "2")
+        calculator.tappedNumber(numberText: "+")
+        calculator.tappedNumber(numberText: "1")
+        
+        XCTAssertTrue(calculator.expressionIsCorrect)
+    }
+    
+    func test_if_expression_is_correct_error_with_addition_operator() {
+        calculator.tappedNumber(numberText: "+")
+        
+        XCTAssertFalse(calculator.expressionIsCorrect)
+    }
+    
+    func test_expression_have_enough_element_success() {
+        calculator.calculationText = "2+1=3"
+        calculator.tappedNumber(numberText: "+")
+        
+        XCTAssertFalse(calculator.expressionHaveResult)
+    }
+    
+    func test_expression_have_enough_element_failed_expressionHaveResult() {
+        calculator.calculationText = "2+1=3"
+        calculator.tappedNumber(numberText: "+")
+        
+        XCTAssertFalse(calculator.expressionHaveResult)
+    }
+    
+    func test_tappedNumber_expression_have_result() {
+        calculator.calculationText = "2+1"
+        
+        XCTAssertFalse(calculator.expressionHaveResult)
+    }
+    
 }
