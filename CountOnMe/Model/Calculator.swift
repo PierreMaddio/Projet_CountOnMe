@@ -80,6 +80,7 @@ class Calculator {
         }
     }
     
+    
     // Method for result
     func result() {
         // Create local copy of operations for result method
