@@ -104,12 +104,13 @@ class Calculator {
     }
     
     private func roundResult(result: Double) {
-        if result == Double(Int(result)) {
-            let roundResult = Int(result)
-            resultString = String(roundResult)
-        } else {
-            resultString = String(result)
+        resultString = String(format: "%.2f", result) // float / ou double // 23.33
+        // Ex : 23.33 -> ["23", "00"]
+        let arrayResult = resultString.split(separator: ".") // ["23", "33"]
+        if arrayResult.last ?? "" == "00" {
+            resultString = String(arrayResult.first ?? "")
         }
+        
     }
     
     private func calculatorResult() {
@@ -148,5 +149,7 @@ class Calculator {
                 }
             }
         }
+        
     }
+    
 }

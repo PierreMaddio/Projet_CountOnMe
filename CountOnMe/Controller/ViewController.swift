@@ -32,39 +32,39 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        calculator.multiplication()
-        attributeText()
-        guard !calculator.canAddOperator else {
+        guard calculator.canAddOperator else {
             alert(message: "Un operateur est déja mis !")
             return
         }
+        calculator.multiplication()
+        attributeText()
     }
     
     @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        calculator.division()
-        attributeText()
-        guard !calculator.canAddOperator else {
+        guard calculator.canAddOperator else {
             alert(message: "Un operateur est déja mis !")
             return
         }
+        calculator.division()
+        attributeText()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        calculator.addition()
-        attributeText()
-        guard !calculator.canAddOperator else {
+        guard calculator.canAddOperator else {
             alert(message: "Un operateur est déja mis !")
             return
         }
+        calculator.addition()
+        attributeText()
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        calculator.substraction()
-        attributeText()
-        guard !calculator.canAddOperator else {
+        guard calculator.canAddOperator else {
             alert(message: "Un operateur est déja mis !")
             return
         }
+        calculator.substraction()
+        attributeText()
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {

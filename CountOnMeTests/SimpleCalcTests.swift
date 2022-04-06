@@ -49,7 +49,7 @@ class SimpleCalcTests: XCTestCase {
         
         calculator.result()
         
-        XCTAssertEqual(calculator.resultString, "2.8")
+        XCTAssertEqual(calculator.resultString, "2.80")
     }
     
     func test_substraction_failed() {
@@ -59,7 +59,7 @@ class SimpleCalcTests: XCTestCase {
         
         calculator.result()
         
-        XCTAssertFalse(calculator.resultString == "-2.5")
+        XCTAssertFalse(calculator.resultString == "-2.50")
     }
     
     func test_multiplication_success() {
@@ -89,7 +89,7 @@ class SimpleCalcTests: XCTestCase {
         
         calculator.result()
         
-        XCTAssertEqual(calculator.resultString, "2.5")
+        XCTAssertEqual(calculator.resultString, "2.50")
     }
     
     func test_division_failed() {
@@ -102,7 +102,6 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertFalse(calculator.resultString == "6")
     }
     
-    // Expression is correct when having a number in numberText
     func testIfExpressionIsCorrect() {
         calculator.tappedNumber(numberText: "2")
         calculator.tappedNumber(numberText: "+")
@@ -118,23 +117,38 @@ class SimpleCalcTests: XCTestCase {
     }
     
     func test_expression_have_enough_element_success() {
-        calculator.calculationText = "2+1=3"
-        calculator.tappedNumber(numberText: "+")
+        calculator.calculationText = "2 + 1 = 3"
         
-        XCTAssertFalse(calculator.expressionHaveResult)
+        XCTAssertTrue(calculator.expressionHaveResult)
     }
     
     func test_expression_have_enough_element_failed_expressionHaveResult() {
-        calculator.calculationText = "2+1=3"
+        calculator.calculationText = "2 + 1"
         calculator.tappedNumber(numberText: "+")
         
         XCTAssertFalse(calculator.expressionHaveResult)
     }
     
     func test_tappedNumber_expression_have_result() {
-        calculator.calculationText = "2+1"
+        calculator.calculationText = "2 + 1"
         
         XCTAssertFalse(calculator.expressionHaveResult)
+    }
+    
+    func test_zeroDivision_success() {
+        calculator.calculationText = "2 / 0"
+        
+        calculator.result()
+        
+        XCTAssertTrue(calculator.expressionHasNoZeroDivision)
+    }
+    
+    func test_zeroDivision_failed() {
+        calculator.calculationText = "2 / 2"
+        
+        calculator.result()
+        
+        XCTAssertFalse(calculator.expressionHasNoZeroDivision)
     }
     
 }
