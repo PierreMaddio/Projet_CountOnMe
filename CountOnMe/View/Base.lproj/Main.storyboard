@@ -82,7 +82,7 @@
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="tappedACButton:" destination="18k-9V-nkG" eventType="touchUpInside" id="gH6-aL-ASY"/>
+                                                                    <action selector="tappedResetButton:" destination="18k-9V-nkG" eventType="touchUpInside" id="dAl-8A-zZ0"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUz-4g-7Q7">

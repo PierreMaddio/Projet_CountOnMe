@@ -77,13 +77,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        guard calculator.expressionIsCorrect else {
-            alert(message: "Entrez une expression correcte !")
+        guard calculator.expressionHaveEnoughElement else {
+            alert(message: "Démarrez un nouveau calcul !")
             return
         }
         
-        guard calculator.expressionHaveEnoughElement else {
-            alert(message: "Démarrez un nouveau calcul !")
+        guard calculator.expressionIsCorrect else {
+            alert(message: "Entrez une expression correcte !")
             return
         }
         
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
         attributeText()
     }
     
-    @IBAction func tappedACButton(_ sender: UIButton) {
+    @IBAction func tappedResetButton(_ sender: UIButton) {
         textView.text.removeAll()
         calculator.calculationText.removeAll()
         textView.text = "0"

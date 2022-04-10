@@ -1,6 +1,6 @@
 //
-//  SimpleCalcTests.swift
-//  SimpleCalcTests
+//  CalculatorTests.swift
+//  CalculatorTests
 //
 //  Created by Vincent Saluzzo on 29/03/2019.
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import CountOnMe
 
-class SimpleCalcTests: XCTestCase {
+class CalculatorTests: XCTestCase {
     
     var calculator: Calculator!
     
@@ -140,15 +140,15 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertTrue(calculator.expressionIsCorrect)
     }
     
-    func testIfExpressionHaveEnoughElement() { // add
+    func testIfExpressionHaveEnoughElement() {
         // GIVEN
         calculator.tappedNumber(numberText: "2 - 6")
-
+        
         // THEN
         XCTAssertTrue(calculator.expressionHaveEnoughElement)
     }
     
-    func test_if_expression_is_correct_error_with_addition_operator() {
+    func testIfExpressionIsCorrectErrorWithAdditionOperator() {
         // GIVEN
         calculator.tappedNumber(numberText: "+")
         
@@ -156,7 +156,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertFalse(calculator.expressionIsCorrect)
     }
     
-    func test_expression_have_enough_element_success() {
+    func testIfExpressionHaveEnoughElementSuccess() {
         // GIVEN
         calculator.calculationText = "2 + 1 = 3"
         
@@ -164,7 +164,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertTrue(calculator.expressionHaveResult)
     }
     
-    func test_expression_have_enough_element_failed_expressionHaveResult() {
+    func testIfExpressionHaveEnoughElementFailedAndExpressionHaveResult() {
         // GIVEN
         calculator.calculationText = "2 + 1"
         calculator.tappedNumber(numberText: "+")
@@ -173,7 +173,7 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertFalse(calculator.expressionHaveResult)
     }
     
-    func test_tappedNumber_expression_have_result() {
+    func testTappedNumberExpressionHaveResult() {
         // GIVEN
         calculator.calculationText = "2 + 1"
         
@@ -181,17 +181,18 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertFalse(calculator.expressionHaveResult)
     }
     
-    func test_zeroDivision_success() {
+    func testZeroDivisionSuccess() {
         // GIVEN
         calculator.calculationText = "2 / 0"
         
         // WHEN
         calculator.result()
         
+        // THEN
         XCTAssertTrue(calculator.expressionHasNoZeroDivision)
     }
     
-    func test_zeroDivision_failed() {
+    func testZeroDivisionFailed() {
         // GIVEN
         calculator.calculationText = "2 / 2"
         
@@ -200,6 +201,40 @@ class SimpleCalcTests: XCTestCase {
         
         // THEN
         XCTAssertFalse(calculator.expressionHasNoZeroDivision)
+    }
+    
+    func testIfAddCommaExpressionIsCorrectCommaFalse() {
+        // GIVEN
+        calculator.calculationText = "2 +"
+        
+        // THEN
+        XCTAssertFalse(calculator.canAddComma)
+    }
+    
+    func testIfAddCommaExpressionIsCorrectCommaTrue() {
+        // GIVEN
+        calculator.calculationText = "2 + 2"
+        
+        // THEN
+        XCTAssertTrue(calculator.canAddComma)
+    }
+    
+    func testCalculationTextIsEmpty() {
+        // GIVEN
+        calculator.calculationText = "2 + 2 = 4"
+        calculator.result()
+        
+        // THEN
+        XCTAssertTrue(calculator.calculationText.isEmpty)
+    }
+    
+    func testCalculationTextIsNotEmpty() {
+        // GIVEN
+        calculator.calculationText = "2 + 2"
+        calculator.result()
+        
+        // THEN
+        XCTAssertFalse(calculator.calculationText.isEmpty)
     }
     
 }
