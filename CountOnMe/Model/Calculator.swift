@@ -129,7 +129,6 @@ class Calculator {
             case "-": result = left - right
             case "x": result = left * right
             case "/": result = left / right
-            // case "=": return
             default: fatalError("Unknown operator !")
             }
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
