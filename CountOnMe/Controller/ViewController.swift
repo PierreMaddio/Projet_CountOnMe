@@ -67,6 +67,15 @@ class ViewController: UIViewController {
         attributeText()
     }
     
+    @IBAction func tappedCommaButton(_ sender: Any) {
+        guard calculator.canAddComma else {
+            alert(message: "Entrez une expression correcte !")
+            return
+        }
+        calculator.tappedNumber(numberText: ".")
+        attributeText()
+    }
+    
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
             alert(message: "Entrez une expression correcte !")

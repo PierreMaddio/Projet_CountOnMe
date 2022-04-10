@@ -38,6 +38,13 @@ class Calculator {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/" && elements.first != nil
     }
     
+    var canAddComma: Bool {
+            return (elements.last != "+" &&
+            elements.last != "-" &&
+            elements.last != "/" &&
+            elements.last != "x" )
+        }
+    
     // Check if the equal operator is placed at the end to perform the calculation
     var expressionHaveResult: Bool {
         return calculationText.firstIndex(of: "=") != nil
@@ -48,7 +55,7 @@ class Calculator {
     
     // MARK: - Method
     
-    //Method for tapped number
+    // Tapped number
     func tappedNumber(numberText: String) {
         if expressionHaveResult {
             calculationText = ""
@@ -80,7 +87,6 @@ class Calculator {
         }
     }
     
-    
     // Method for result
     func result() {
         // Create local copy of operations for result method
@@ -103,14 +109,13 @@ class Calculator {
         }
     }
     
+    // Round the result by two digits after the decimal point
     private func roundResult(result: Double) {
-        resultString = String(format: "%.2f", result) // float / ou double // 23.33
-        // Ex : 23.33 -> ["23", "00"]
+        resultString = String(format: "%.2f", result) // Ex : 23.33 -> ["23", "00"]
         let arrayResult = resultString.split(separator: ".") // ["23", "33"]
         if arrayResult.last ?? "" == "00" {
             resultString = String(arrayResult.first ?? "")
         }
-        
     }
     
     private func calculatorResult() {
@@ -129,13 +134,13 @@ class Calculator {
             }
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             
-            // Round the result if no decimal needed
+            // Round the result
             roundResult(result: result)
             operationsToReduce.insert(resultString, at: 0)
         }
     }
     
-    // Method to check if division by zero is in the expression
+    // Check if division by zero is in the expression
     private func zeroDivision(){
         for i in 0...(elements.count-1) {
             // Make sure i is still in the range
@@ -149,7 +154,5 @@ class Calculator {
                 }
             }
         }
-        
     }
-    
 }
