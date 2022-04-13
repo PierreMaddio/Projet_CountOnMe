@@ -140,6 +140,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertTrue(calculator.expressionIsCorrect)
     }
     
+    // return true because expression have 3 elements
     func testIfExpressionHaveEnoughElement() {
         // GIVEN
         calculator.tappedNumber(numberText: "2 - 6")
@@ -148,6 +149,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertTrue(calculator.expressionHaveEnoughElement)
     }
     
+    // return false because expression is not correct, countains only an operator
     func testIfExpressionIsCorrectErrorWithAdditionOperator() {
         // GIVEN
         calculator.tappedNumber(numberText: "+")
@@ -156,6 +158,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertFalse(calculator.expressionIsCorrect)
     }
     
+    // test expressionHaveResult return true (calculationText countains "=")
     func testIfExpressionHaveEnoughElementSuccess() {
         // GIVEN
         calculator.calculationText = "2 + 1 = 3"
@@ -164,6 +167,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertTrue(calculator.expressionHaveResult)
     }
     
+    // test expressionHaveResult return false (calculationText doesn't countains "=")
     func testIfExpressionHaveEnoughElementFailedAndExpressionHaveResult() {
         // GIVEN
         calculator.calculationText = "2 + 1"
@@ -173,6 +177,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertFalse(calculator.expressionHaveResult)
     }
     
+    // test expressionHaveResult return true (calculationText countains "=") another exemple l 162
     func testTappedNumberExpressionHaveResult() {
         // GIVEN
         calculator.calculationText = "2 + 1"
@@ -181,6 +186,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertFalse(calculator.expressionHaveResult)
     }
     
+    // check is the expression can be division by zero
     func testZeroDivisionSuccess() {
         // GIVEN
         calculator.calculationText = "2 / 0"
@@ -189,9 +195,10 @@ class CalculatorTests: XCTestCase {
         calculator.result()
         
         // THEN
-        XCTAssertTrue(calculator.expressionHasNoZeroDivision)
+        XCTAssertTrue(calculator.expressionHasZero)
     }
     
+    // check is the expression can not be division by zero
     func testZeroDivisionFailed() {
         // GIVEN
         calculator.calculationText = "2 / 2"
@@ -200,9 +207,10 @@ class CalculatorTests: XCTestCase {
         calculator.result()
         
         // THEN
-        XCTAssertFalse(calculator.expressionHasNoZeroDivision)
+        XCTAssertFalse(calculator.expressionHasZero)
     }
     
+    // return false because we can not add comma after plus
     func testIfAddCommaExpressionIsCorrectCommaFalse() {
         // GIVEN
         calculator.calculationText = "2 +"
@@ -211,6 +219,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertFalse(calculator.canAddComma)
     }
     
+    // return true because we can add comma after a number
     func testIfAddCommaExpressionIsCorrectCommaTrue() {
         // GIVEN
         calculator.calculationText = "2 + 2"
@@ -219,6 +228,7 @@ class CalculatorTests: XCTestCase {
         XCTAssertTrue(calculator.canAddComma)
     }
     
+    // test calculationText = ""
     func testCalculationTextIsEmpty() {
         // GIVEN
         calculator.calculationText = "2 + 2 = 4"

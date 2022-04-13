@@ -91,7 +91,7 @@ class ViewController: UIViewController {
         calculator.result()
         
         // Check if division by zero is in the expression
-        guard !calculator.expressionHasNoZeroDivision else {
+        guard !calculator.expressionHasZero else {
             alert(message: "La division par zero est impossible !")
             attributeText()
             return

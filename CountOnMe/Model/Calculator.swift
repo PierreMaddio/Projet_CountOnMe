@@ -25,6 +25,7 @@ class Calculator {
     var operationsToReduce = [String]()
     
     // Error check computed variables
+    // return true if the last element is not an operator
     var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
@@ -34,28 +35,34 @@ class Calculator {
         return elements.count >= 3
     }
     
+    // return true if the last element is not an operator and the first element is a number
     var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/" && elements.first != nil
     }
     
+    // return true if element doesn't countain a comma and operators
     var canAddComma: Bool {
-            return (elements.last != "+" &&
+            return (
+            !(elements.last?.contains(".") ?? false) &&
+            elements.last != "+" &&
             elements.last != "-" &&
             elements.last != "/" &&
-            elements.last != "x" )
+            elements.last != "x"
+            )
         }
     
-    // Check if the equal operator is placed at the end to perform the calculation
+    // return true if the user has click on the equal button
     var expressionHaveResult: Bool {
         return calculationText.firstIndex(of: "=") != nil
     }
     
     // Check if no division by zero
-    var expressionHasNoZeroDivision: Bool = false
+    var expressionHasZero: Bool = false
     
     // MARK: - Method
     
     // Tapped number
+    // If result print ""
     func tappedNumber(numberText: String) {
         if expressionHaveResult {
             calculationText = ""
@@ -92,14 +99,14 @@ class Calculator {
         // Create local copy of operations for result method
         operationsToReduce = elements
         
-        // Reset calculation if result already received
+        // Reset calculation if already have a result
         if expressionHaveResult {
             calculationText = ""
         } else {
             // Check if a division by zero exists
             zeroDivision()
             
-            if expressionHasNoZeroDivision == false {
+            if expressionHasZero == false {
                 // Iterate over operations while an operand still here
                 while operationsToReduce.count > 1 {
                     calculatorResult()
@@ -135,6 +142,7 @@ class Calculator {
             
             // Round the result
             roundResult(result: result)
+            // insert the result into operationsToReduce at the first position ligne 114
             operationsToReduce.insert(resultString, at: 0)
         }
     }
@@ -147,9 +155,9 @@ class Calculator {
                 // Find the divisions and check if followed by zero
                 if elements[i-1] == "/" && elements[i] == "0" {
                     calculationText = ""
-                    expressionHasNoZeroDivision = true
+                    expressionHasZero = true
                 } else {
-                    expressionHasNoZeroDivision = false
+                    expressionHasZero = false
                 }
             }
         }
